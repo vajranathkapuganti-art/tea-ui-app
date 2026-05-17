@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .app-shell {
+    @apply relative mx-auto flex min-h-screen w-full max-w-md flex-col bg-neutral-50 text-neutral-900 shadow-[0_0_40px_rgba(0,0,0,0.18)] sm:my-6 sm:min-h-[calc(100vh-3rem)] sm:rounded-[2.2rem] sm:border sm:border-neutral-200;
+  }
+
+  .bottom-nav-btn {
+    @apply flex flex-1 flex-col items-center gap-0.5 text-[11px] font-medium text-neutral-400 transition-colors duration-200;
+  }
+
+  .bottom-nav-btn-active {
+    @apply font-semibold text-neutral-900;
+  }
+
+  .product-img-placeholder {
+    @apply flex h-44 w-32 shrink-0 items-center justify-center rounded-[2.5rem] bg-gradient-to-b from-amber-200 to-amber-400 text-sm font-medium text-amber-900 shadow-md;
+  }
+
+  .tap-card {
+    @apply transition-transform duration-150 ease-out active:scale-[0.97];
+  }
+
+  .screen-base {
+    @apply absolute inset-0 flex-1 overflow-y-auto px-0 pb-20 opacity-0 translate-x-4 pointer-events-none transition duration-250 ease-out;
+  }
+
+  .screen-visible {
+    @apply opacity-100 translate-x-0 pointer-events-auto;
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .fade-up-delay {
+    animation-delay: 0.15s;
+  }
+
+  .fade-up-delay-lg {
+    animation-delay: 0.3s;
+  }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
