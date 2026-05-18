@@ -1,5 +1,6 @@
 import { ProductImagePlaceholder } from '@/components/ui/ProductImagePlaceholder';
-import { FEATURED_DRINKS, MENU_CATEGORIES } from '@/lib/data';
+import { MENU_CATEGORIES, PRODUCTS_BY_CATEGORY, type MenuCategory } from '@/lib/data';
+import { useState } from 'react';
 
 type MenuScreenProps = {
   className: string;
@@ -8,58 +9,39 @@ type MenuScreenProps = {
 };
 
 export function MenuScreen({ className, onBack, onOpenProduct }: MenuScreenProps) {
+  const [selectedCategory, setSelectedCategory] = useState<MenuCategory>(MENU_CATEGORIES[0]);
+  const displayProducts = PRODUCTS_BY_CATEGORY[selectedCategory];
+
   return (
-    <section className={className}>
-      <header className="px-4 pb-3 pt-3">
-        <div className="flex items-center gap-2 text-sm font-medium">
-          <button type="button" onClick={onBack} className="tap-card text-lg leading-none">
+    <section className={`${className} overflow-y-auto`}>
+      <header className="sticky top-0 z-10 bg-neutral-50 px-4 pb-3 pt-3 md:px-6 lg:px-8">
+        <div className="flex items-center gap-2 text-sm font-medium md:text-base">
+          <button type="button" onClick={onBack} className="tap-card text-lg leading-none md:text-xl">
             ←
           </button>
-          <p className="font-semibold tracking-wide">PICK UP</p>
+          <p className="font-semibold tracking-wide">Home</p>
         </div>
-
-        <div className="mt-1 flex items-start justify-between gap-3 text-xs text-neutral-500">
-          <div>
-            <button
-              type="button"
-              className="flex items-center gap-1 text-left text-xs font-medium text-neutral-900"
-            >
-              <span className="text-[11px]">☆</span>
-              <span>Southampton High Street ▾</span>
-            </button>
-            <p className="mt-1">
-              No location service · <span className="underline">Enable now</span>
-            </p>
-          </div>
-          <button
-            type="button"
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-neutral-800 text-sm text-white"
-            aria-label="Search"
-          >
-            ⌕
-          </button>
-        </div>
-        <p className="mt-2 text-xs text-neutral-400">new style tea, by inspiration</p>
       </header>
 
       <div className="flex border-t border-neutral-200 bg-white">
-        <aside className="flex w-24 shrink-0 flex-col gap-4 border-r border-neutral-200 py-4 pl-3 pr-2 text-center text-[11px] text-neutral-400">
-          {MENU_CATEGORIES.map((category, index) => (
+        <aside className="sticky top-0 flex w-24 shrink-0 flex-col gap-4 border-r border-neutral-200 py-4 pl-3 pr-2 text-center text-[11px] text-neutral-400 md:w-28 md:gap-6 md:text-xs lg:w-32 lg:py-6">
+          {MENU_CATEGORIES.map((category) => (
             <button
               key={category}
               type="button"
-              className={index === 0 ? 'font-medium text-neutral-900' : undefined}
+              onClick={() => setSelectedCategory(category)}
+              className={selectedCategory === category ? 'font-medium text-neutral-900' : undefined}
             >
               {category}
             </button>
           ))}
         </aside>
 
-        <section className="min-w-0 flex-1 space-y-6 px-4 py-4 text-sm">
-          <h2 className="text-sm font-semibold fade-up">Featured Drinks</h2>
+        <section className="min-w-0 flex-1 space-y-6 px-4 py-4 text-sm md:space-y-8 md:px-6 md:py-6 lg:px-8 pb-20 md:pb-24 lg:pb-28 overflow-y-auto">
+          <h2 className="text-sm font-semibold fade-up md:text-base lg:text-lg">{selectedCategory}</h2>
 
-          <div className="grid grid-cols-2 gap-x-6 gap-y-8 text-xs">
-            {FEATURED_DRINKS.map((drink, idx) => (
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 text-xs md:grid-cols-3 md:gap-x-8 md:gap-y-10 lg:grid-cols-4 lg:gap-x-10 lg:gap-y-12">
+            {displayProducts.map((drink, idx) => (
               <button
                 key={drink.name}
                 type="button"
@@ -69,10 +51,10 @@ export function MenuScreen({ className, onBack, onOpenProduct }: MenuScreenProps
                 onClick={() => onOpenProduct(drink.name)}
               >
                 <ProductImagePlaceholder label={drink.shortLabel} />
-                <p className="w-full text-left text-[13px] font-normal text-neutral-900">
+                <p className="w-full text-left text-[13px] font-normal text-neutral-900 md:text-sm lg:text-base">
                   {drink.name}
                 </p>
-                <p className="w-full text-left text-[13px] text-neutral-600">£{drink.price}</p>
+                <p className="w-full text-left text-[13px] text-neutral-600 md:text-sm lg:text-base">£{drink.price}</p>
               </button>
             ))}
           </div>

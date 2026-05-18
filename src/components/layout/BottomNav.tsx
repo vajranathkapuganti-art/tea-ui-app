@@ -18,7 +18,7 @@ function isActive(screen: Screen, target: Screen): boolean {
 
 export function BottomNav({ screen, onNavigate }: BottomNavProps) {
   return (
-    <nav className="sticky bottom-0 z-10 flex h-14 shrink-0 items-center border-t border-neutral-200 bg-white px-8 text-xs">
+    <nav className="bottom-nav">
       {NAV_ITEMS.map(({ label, screen: target }) => {
         const active = isActive(screen, target);
         return (
