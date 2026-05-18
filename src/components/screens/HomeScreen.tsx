@@ -10,8 +10,8 @@ type HomeScreenProps = {
 
 export function HomeScreen({ className, hero, onOpenProduct }: HomeScreenProps) {
   return (
-    <section className={`${className} overflow-y-auto md:overflow-y-hidden`}>
-      <header className="sticky top-0 z-10 bg-neutral-50 px-4 pt-2 fade-up md:px-6 lg:px-8 pb-20 md:pb-24 lg:pb-28">
+    <section className={`${className} overflow-y-auto`}>
+      <header className="sticky top-0 z-10 bg-neutral-50 px-4 pt-2 fade-up md:px-6 lg:px-8 pb-4 md:pb-5 lg:pb-6 border-b border-neutral-200">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-bold md:text-base lg:text-xl">COCO & BOBA</p>
@@ -24,11 +24,13 @@ export function HomeScreen({ className, hero, onOpenProduct }: HomeScreenProps) 
             className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
           />
         </div>
+      </header>
 
+      <div className="space-y-4 px-4 pt-4 pb-20 md:px-6 md:pt-6 md:pb-24 lg:px-8 lg:pt-8 lg:pb-28">
         <button
           type="button"
           onClick={() => onOpenProduct(hero.name)}
-          className="tap-card mt-4 w-full rounded-3xl bg-white p-4 text-left shadow-sm fade-up fade-up-delay md:mt-6 md:p-6 lg:p-8"
+          className="tap-card w-full rounded-3xl bg-white p-4 text-left shadow-sm fade-up fade-up-delay md:p-6 lg:p-8"
         >
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0 flex-1">
@@ -42,7 +44,7 @@ export function HomeScreen({ className, hero, onOpenProduct }: HomeScreenProps) 
           </div>
         </button>
 
-        <div className="mt-3 rounded-3xl bg-white p-4 text-xs text-neutral-600 shadow-sm fade-up fade-up-delay-lg md:mt-6 md:p-6 lg:p-8 lg:mt-8">
+        <div className="rounded-3xl bg-white p-4 text-xs text-neutral-600 shadow-sm fade-up fade-up-delay-lg md:p-6 lg:p-8">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 md:text-xs lg:text-sm">
             Our store
           </p>
@@ -55,7 +57,7 @@ export function HomeScreen({ className, hero, onOpenProduct }: HomeScreenProps) 
           </p>
           <p className="mt-2 leading-relaxed md:text-sm lg:text-base">
             So we did the work. Travelled to Vietnam, trained properly, learned to make pearls from scratch, brew authentic teas, craft fruit teas that actually taste like fruit, build ice blends with real depth, and get the tofu pudding and bingsu just right.
-Everything on our menu is made with that same intention. Pearls cooked in-house, teas selected for depth, fruits chosen at peak ripeness.
+            Everything on our menu is made with that same intention. Pearls cooked in-house, teas selected for depth, fruits chosen at peak ripeness.
           </p>
           <p className="mt-2 leading-relaxed md:text-sm lg:text-base">
             Whether grabbing something quick or sitting down with friends, every order is made to be worth your time.
@@ -65,7 +67,7 @@ Everything on our menu is made with that same intention. Pearls cooked in-house,
             want guests to see first.
           </p>
         </div>
-      </header>
+      </div>
     </section>
   );
 }
