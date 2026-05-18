@@ -31,7 +31,7 @@ export function TeaApp() {
   };
 
   return (
-    <main className="min-h-screen bg-neutral-200/80 py-0 sm:bg-neutral-300/60 sm:py-6">
+    <main className="min-h-screen bg-neutral-200/80 py-0 sm:bg-neutral-300/60 sm:py-6 md:py-8 lg:py-0">
       <div className="app-shell">
         <div className="relative mt-0 flex-1 overflow-hidden">
           <HomeScreen
